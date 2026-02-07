@@ -1,10 +1,13 @@
+/* ===== RESET ===== */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #141e30, #243b55);
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top left, #1f2c3d, #0f1720);
     color: white;
+    overflow: hidden;
 }
 
+/* ===== LAYOUT ===== */
 .container {
     display: flex;
     height: 100vh;
@@ -12,45 +15,46 @@ body {
 
 /* ===== SIDEBAR ===== */
 .sidebar {
-    width: 30%;
-    background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
-    padding: 30px 20px;
+    width: 28%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    box-shadow: inset -1px 0 0 rgba(255,255,255,0.05);
 }
 
-.profile {
-    text-align: center;
-    margin-bottom: 40px;
+.sidebar h2 {
+    margin-bottom: 30px;
+    font-size: 22px;
+    letter-spacing: 1px;
 }
 
-.avatar {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.playlist {
+.sidebar ul {
     list-style: none;
     padding: 0;
 }
 
-.playlist li {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
+.sidebar li {
+    padding: 18px;
     margin: 15px 0;
-    background: rgba(255,255,255,0.08);
-    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 15px;
 }
 
-.playlist li:hover {
-    background: #00c6ff;
-    transform: translateX(5px);
+.sidebar li:hover {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    transform: translateX(8px);
+}
+
+.sidebar li.active {
+    background: linear-gradient(90deg, #ff512f, #dd2476);
 }
 
 /* ===== PLAYER ===== */
 .player {
-    width: 70%;
+    width: 72%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,72 +63,132 @@ body {
 }
 
 #songTitle {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 40px;
+    letter-spacing: 1px;
 }
 
-/* ===== DISC ===== */
+/* ===== DISC AREA ===== */
 .disc-container {
-    margin-bottom: 40px;
+    position: relative;
+    margin-bottom: 50px;
 }
 
 .disc {
-    width: 260px;
-    height: 260px;
+    width: 280px;
+    height: 280px;
     border-radius: 50%;
-    background: radial-gradient(circle, #111 40%, #000 70%);
+    background:
+        repeating-radial-gradient(circle,
+            #111 0px,
+            #111 3px,
+            #000 4px,
+            #000 6px);
     box-shadow:
-        0 0 60px rgba(0,0,0,0.6),
-        inset 0 0 30px rgba(255,255,255,0.05);
+        0 0 60px rgba(0,0,0,0.8),
+        inset 0 0 40px rgba(255,255,255,0.04);
     animation: spin 6s linear infinite;
     animation-play-state: paused;
     position: relative;
 }
 
+/* Glow khi phát nhạc */
+.disc.playing {
+    box-shadow:
+        0 0 60px rgba(255,0,80,0.6),
+        0 0 120px rgba(255,0,80,0.3),
+        inset 0 0 40px rgba(255,255,255,0.05);
+}
+
+/* Tâm đĩa */
 .center {
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle, #ff4e50, #c0392b);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #ff4e50, #8e0e00);
     border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0 0 30px rgba(255,0,0,0.7);
 }
 
+/* ===== AUDIO ===== */
+audio {
+    width: 60%;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+}
+
+/* ===== ANIMATION ===== */
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+/* ===== SIDEBAR UPGRADE ===== */
+.profile {
+    text-align: center;
+    margin-bottom: 40px;
+}
 
-/* ===== MUSIC NOTES EFFECT ===== */
-.music-notes {
+.avatar {
+    font-size: 40px;
+    background: linear-gradient(45deg,#ff512f,#dd2476);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    margin: auto;
+    box-shadow: 0 0 25px rgba(255,0,100,0.6);
+}
+
+.playlist li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playlist li.active {
+    background: linear-gradient(90deg,#ff512f,#dd2476);
+    box-shadow: 0 0 20px rgba(255,0,100,0.5);
+}
+
+.duration {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* ===== VISUAL AREA ===== */
+.visual-area {
+    position: relative;
+}
+
+/* ===== MUSIC NOTES ===== */
+#musicNotes {
     position: absolute;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    overflow: hidden;
+    top: 0;
+    left: 0;
 }
 
 .note {
     position: absolute;
-    bottom: 120px;
-    color: #00e6ff;
-    animation: floatUp 3s linear forwards;
+    font-size: 20px;
+    color: #ff4e50;
+    animation: floatNote 3s linear forwards;
     opacity: 0.8;
 }
 
-@keyframes floatUp {
+@keyframes floatNote {
     0% {
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
         opacity: 1;
     }
     100% {
-        transform: translateY(-300px);
+        transform: translateY(-200px) scale(1.5);
         opacity: 0;
     }
-}
-
-audio {
-    width: 60%;
 }
