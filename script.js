@@ -1,40 +1,33 @@
 const audio = document.getElementById("audioPlayer");
 const title = document.getElementById("songTitle");
 const disc = document.getElementById("disc");
+const playlistItems = document.querySelectorAll(".sidebar li");
 
-/* ===== HÀM PHÁT NHẠC ===== */
 function playSong(name, file) {
 
-    // Đổi tiêu đề
     title.innerText = name;
-
-    // Nếu đang phát bài khác thì reset trước
-    audio.pause();
-    audio.currentTime = 0;
-
-    // Đổi nguồn nhạc
     audio.src = file;
+    audio.play();
 
-    // Phát nhạc
-    audio.play().catch(error => {
-        console.log("Autoplay bị chặn:", error);
-    });
+    // Highlight bài đang phát
+    playlistItems.forEach(item => item.classList.remove("active"));
+    event.target.classList.add("active");
 }
 
-/* ===== KHI NHẠC CHẠY ===== */
-audio.addEventListener("play", () => {
+// Khi nhạc chạy
+audio.addEventListener("play", function () {
     disc.style.animationPlayState = "running";
     disc.classList.add("playing");
 });
 
-/* ===== KHI NHẠC TẠM DỪNG ===== */
-audio.addEventListener("pause", () => {
+// Khi nhạc dừng
+audio.addEventListener("pause", function () {
     disc.style.animationPlayState = "paused";
     disc.classList.remove("playing");
 });
 
-/* ===== KHI NHẠC KẾT THÚC ===== */
-audio.addEventListener("ended", () => {
+// Khi nhạc kết thúc
+audio.addEventListener("ended", function () {
     disc.style.animationPlayState = "paused";
     disc.classList.remove("playing");
 });
