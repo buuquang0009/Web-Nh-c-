@@ -1,18 +1,19 @@
 const audio = document.getElementById("audioPlayer");
-const disc = document.getElementById("disc");
 const title = document.getElementById("songTitle");
+const disc = document.getElementById("disc");
 
-function playSong(name, url) {
+function playSong(name, file) {
     title.innerText = name;
-    audio.src = url;
+    audio.src = file;
     audio.play();
-    disc.style.animationPlayState = "running";
 }
 
-audio.onpause = function() {
-    disc.style.animationPlayState = "paused";
-};
+// Khi nhạc chạy → đĩa quay
+audio.addEventListener("play", function () {
+    disc.style.animationPlayState = "running";
+});
 
-audio.onended = function() {
+// Khi nhạc dừng → đĩa ngừng quay
+audio.addEventListener("pause", function () {
     disc.style.animationPlayState = "paused";
-};
+});
