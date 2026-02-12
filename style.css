@@ -284,3 +284,43 @@ audio {
     transform: scale(1.08);
     box-shadow: 0 0 25px rgba(255,0,120,0.7);
 }
+
+/* ===== PLAY ALL BUTTON UPGRADE ===== */
+
+.play-all-btn {
+    position: absolute;
+    top: 30px;
+    left: -70px;   /* Đẩy ra ngoài khung */
+    
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    color: white;
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    border: none;
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    box-shadow: 
+        0 0 15px rgba(255, 0, 100, 0.5),
+        0 5px 20px rgba(0,0,0,0.4);
+
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.play-all-btn:hover {
+    transform: translateX(5px) scale(1.05);
+    box-shadow: 
+        0 0 25px rgba(255, 0, 100, 0.8),
+        0 8px 25px rgba(0,0,0,0.6);
+}
+
+/* Click effect */
+.play-all-btn:active {
+    transform: scale(0.95);
+}
+
