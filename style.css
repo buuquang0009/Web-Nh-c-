@@ -211,7 +211,7 @@ audio {
         transparent 100%
     );
     transform: skewX(-25deg);
-    animation: shineMove 3.5s infinite;
+    animation: shineMove 6.7s infinite;
     z-index: 2;
 }
 
