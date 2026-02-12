@@ -16,6 +16,8 @@ body {
 /* ===== SIDEBAR ===== */
 .sidebar {
     width: 28%;
+    height: 100vh;        /* Thêm dòng này */
+    overflow-y: auto;     /* Thêm dòng này */
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(15px);
     padding: 30px;
@@ -50,19 +52,6 @@ body {
 
 .sidebar li.active {
     background: linear-gradient(90deg, #ff512f, #dd2476);
-}
-/* Scrollbar đẹp hơn */
-.sidebar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background: linear-gradient(#ff512f,#dd2476);
-    border-radius: 10px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: transparent;
 }
 
 /* ===== PLAYER ===== */
