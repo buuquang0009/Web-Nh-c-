@@ -59,3 +59,31 @@ audio.addEventListener("pause", () => {
 audio.addEventListener("ended", () => {
     clearInterval(noteInterval);
 });
+
+const audio = document.getElementById("audioPlayer");
+const playAllBtn = document.getElementById("playAllBtn");
+const playlistItems = document.querySelectorAll(".playlist li");
+
+let currentIndex = 0;
+let isPlayingAll = false;
+
+function playByIndex(index) {
+    playlistItems[index].click();
+}
+
+playAllBtn.addEventListener("click", () => {
+    currentIndex = 0;
+    isPlayingAll = true;
+    playByIndex(currentIndex);
+});
+
+audio.addEventListener("ended", () => {
+    if (isPlayingAll) {
+        currentIndex++;
+        if (currentIndex < playlistItems.length) {
+            playByIndex(currentIndex);
+        } else {
+            isPlayingAll = false;
+        }
+    }
+});
