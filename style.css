@@ -28,8 +28,10 @@ body {
 
 .sidebar h2 {
     margin-bottom: 30px;
-    font-size: 22px;
+    font-size: 33px;
     letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
 }
 
 .sidebar ul {
@@ -157,6 +159,8 @@ audio {
 .profile {
     text-align: center;
     margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
 }
 
 .avatar {
@@ -185,6 +189,38 @@ audio {
     font-size: 13px;
     opacity: 0.7;
 }
+
+/* ===== SHINE EFFECT ===== */
+
+.profile::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.25) 50%,
+        transparent 100%
+    );
+    transform: rotate(25deg);
+    animation: shineMove 3.5s infinite;
+}
+
+@keyframes shineMove {
+    0% {
+        left: -100%;
+    }
+    40% {
+        left: 120%;
+    }
+    100% {
+        left: 120%;
+    }
+}
+
 
 /* ===== VISUAL AREA ===== */
 .visual-area {
