@@ -16,7 +16,7 @@ body {
 /* ===== SIDEBAR ===== */
 .sidebar {
     width: 28%;
-    height: 100vh;        /* Thêm dòng này */
+    height: 100%;        /* Thêm dòng này */
     overflow-y: auto;     /* Thêm dòng này */
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(15px);
