@@ -335,7 +335,7 @@ audio {
     font-weight: 300;
     text-transform: uppercase;
 
-    color: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
 
     opacity: 0;
     animation: fadeIn 2s ease forwards,
