@@ -90,3 +90,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+const mainPlaylist = document.querySelector(".playlist");
+const topPlaylist = document.querySelector(".top-playlist");
+
+const firstThree = mainPlaylist.querySelectorAll("li");
+
+for (let i = 0; i < 3; i++) {
+    if (firstThree[i]) {
+        topPlaylist.appendChild(firstThree[i]);
+    }
+}
+
