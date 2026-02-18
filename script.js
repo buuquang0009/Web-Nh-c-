@@ -7,9 +7,21 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentIndex = -1;
     let isPlayingAll = false;
 
-    /* ===== LẤY DANH SÁCH BÀI ===== */
+    /* ===== COPY BÀI TỪ all-songs SANG TỪNG NĂM ===== */
+    const sourceSongs = document.querySelectorAll(".all-songs li");
+
+    sourceSongs.forEach(song => {
+        const year = song.dataset.year;
+        const clone = song.cloneNode(true);
+        const target = document.querySelector(".playlist-" + year);
+        if (target) target.appendChild(clone);
+    });
+
+    /* ===== CHỈ LẤY BÀI ĐANG HIỂN THỊ ===== */
     function getSongs() {
-        return Array.from(document.querySelectorAll("li[data-file]"));
+        return Array.from(
+            document.querySelectorAll(".playlist li[data-file]")
+        );
     }
 
     /* ===== PHÁT THEO INDEX ===== */
@@ -33,13 +45,13 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ===== CLICK TỪNG BÀI ===== */
     document.addEventListener("click", function (e) {
 
-        const li = e.target.closest("li[data-file]");
+        const li = e.target.closest(".playlist li[data-file]");
         if (!li) return;
 
         const songs = getSongs();
         const index = songs.indexOf(li);
 
-        isPlayingAll = false; // tắt chế độ play all
+        isPlayingAll = false;
         playByIndex(index);
     });
 
@@ -51,12 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         isPlayingAll = true;
 
-        // Nếu chưa phát bài nào thì bắt đầu từ bài đầu
         if (currentIndex === -1) {
             playByIndex(0);
-        }
-        // Nếu đang phát 1 bài rồi thì cứ tiếp tục
-        else {
+        } else {
             audio.play();
         }
     });
@@ -71,7 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentIndex < songs.length - 1) {
             playByIndex(currentIndex + 1);
         } else {
-            isPlayingAll = false; // hết danh sách thì dừng
+            isPlayingAll = false;
+            currentIndex = -1; // reset khi phát xong hết list
         }
     });
 
