@@ -7,22 +7,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentIndex = -1;
     let isPlayingAll = false;
 
-    const mainPlaylist = document.querySelector(".playlist");
-    const topPlaylist = document.querySelector(".top-playlist");
-
-    // Move first 3 songs to top box
-    const firstThree = Array.from(mainPlaylist.querySelectorAll("li")).slice(0, 3);
-    firstThree.forEach(li => topPlaylist.appendChild(li));
-
+    /* ===== LẤY DANH SÁCH BÀI ===== */
     function getSongs() {
         return Array.from(document.querySelectorAll("li[data-file]"));
     }
 
+    /* ===== PHÁT THEO INDEX ===== */
     function playByIndex(index) {
+
         const songs = getSongs();
         if (!songs[index]) return;
 
-        const song = songs[index];
+        currentIndex = index;
+
+        const song = songs[currentIndex];
 
         title.textContent = song.dataset.name;
         audio.src = song.dataset.file;
@@ -30,45 +28,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
         songs.forEach(li => li.classList.remove("active"));
         song.classList.add("active");
-
-        currentIndex = index;
     }
 
-    // Click song
+    /* ===== CLICK TỪNG BÀI ===== */
     document.addEventListener("click", function (e) {
+
         const li = e.target.closest("li[data-file]");
         if (!li) return;
 
         const songs = getSongs();
         const index = songs.indexOf(li);
 
-        isPlayingAll = false;
+        isPlayingAll = false; // tắt chế độ play all
         playByIndex(index);
     });
 
-    // Play all
+    /* ===== PLAY ALL ===== */
     playAllBtn.addEventListener("click", function () {
+
         const songs = getSongs();
-        if (songs.length === 0) return;
+        if (!songs.length) return;
 
         isPlayingAll = true;
 
+        // Nếu chưa phát bài nào thì bắt đầu từ bài đầu
         if (currentIndex === -1) {
             playByIndex(0);
         }
+        // Nếu đang phát 1 bài rồi thì cứ tiếp tục
+        else {
+            audio.play();
+        }
     });
 
-    // Auto next
+    /* ===== TỰ ĐỘNG PHÁT BÀI TIẾP ===== */
     audio.addEventListener("ended", function () {
+
         if (!isPlayingAll) return;
 
-        currentIndex++;
         const songs = getSongs();
 
-        if (currentIndex < songs.length) {
-            playByIndex(currentIndex);
+        if (currentIndex < songs.length - 1) {
+            playByIndex(currentIndex + 1);
         } else {
-            isPlayingAll = false;
+            isPlayingAll = false; // hết danh sách thì dừng
         }
     });
 
