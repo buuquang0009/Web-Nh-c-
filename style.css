@@ -13,7 +13,7 @@ body {
     overflow: hidden;
 }
 
-/* ================= CONTAINER (2 CỘT) ================= */
+/* ================= CONTAINER ================= */
 .container {
     display: flex;
     height: 100vh;
@@ -21,37 +21,64 @@ body {
 
 /* ================= SIDEBAR ================= */
 .sidebar {
-    width: 360px;
-    background: rgba(0, 0, 0, 0.35);
-    padding: 25px 20px;
+    width: 400px; /* TO HƠN */
+    min-width: 400px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+    padding: 30px 25px;
     overflow-y: auto;
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255,255,255,0.08);
 }
 
-/* Profile */
+/* Scrollbar đẹp + không trắng */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff512f, #dd2476);
+    border-radius: 20px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #dd2476, #ff512f);
+}
+
+/* Firefox */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #ff4c60 transparent;
+}
+
+/* ================= PROFILE ================= */
 .profile {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 }
 
 .avatar {
-    font-size: 40px;
-    margin-bottom: 10px;
+    font-size: 46px;
+    margin-bottom: 12px;
 }
 
 .profile h2 {
     font-family: 'Cinzel', serif;
-    font-size: 26px;
-    letter-spacing: 2px;
+    font-size: 28px;
+    letter-spacing: 3px;
 }
 
-/* Year box */
+/* ================= YEAR ================= */
 .year-box {
     margin-bottom: 30px;
 }
 
 .year-box h3 {
-    margin-bottom: 15px;
-    font-size: 18px;
+    margin-bottom: 18px;
+    font-size: 19px;
     opacity: 0.9;
 }
 
@@ -60,30 +87,35 @@ body {
     list-style: none;
 }
 
-/* Song item (to hơn, dễ nhìn hơn) */
+/* Song item */
 .playlist li {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: 14px 18px;
-    margin-bottom: 12px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
 
-    font-size: 16px;
+    font-size: 17px;
 
-    background: rgba(255,255,255,0.08);
-    border-radius: 14px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px;
 
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: all 0.25s ease;
 }
 
+/* Hover effect */
 .playlist li:hover {
-    background: rgba(255,255,255,0.16);
+    background: linear-gradient(90deg, #ff512f, #dd2476);
+    transform: translateX(6px);
+    box-shadow: 0 6px 20px rgba(221,36,118,0.4);
 }
 
+/* Active */
 .playlist li.active {
-    background: #ff4c60;
+    background: linear-gradient(90deg, #ff512f, #dd2476);
+    box-shadow: 0 6px 20px rgba(221,36,118,0.6);
 }
 
 /* Song name */
@@ -96,10 +128,10 @@ body {
 
 /* Duration */
 .duration {
-    min-width: 60px;
+    min-width: 65px;
     text-align: right;
     font-size: 14px;
-    opacity: 0.9;
+    opacity: 0.85;
 }
 
 /* ================= PLAYER ================= */
@@ -112,33 +144,58 @@ body {
     position: relative;
 }
 
-/* Play All Button */
+/* ================= PLAY ALL BUTTON ================= */
 #playAllBtn {
     position: absolute;
-    top: 30px;
-    left: 40px;
+    top: 35px;
+    left: 50px;
 
-    padding: 12px 26px;
+    padding: 14px 34px;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
 
-    background: linear-gradient(90deg, #ff512f, #dd2476);
+    background: linear-gradient(135deg, #ff512f, #dd2476);
     color: white;
 
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: all 0.3s ease;
+
+    box-shadow: 0 8px 25px rgba(255, 81, 47, 0.4);
+    overflow: hidden;
+}
+
+/* Glow layer */
+#playAllBtn::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+    opacity: 0;
+    transition: 0.4s;
 }
 
 #playAllBtn:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(221,36,118,0.7);
 }
 
-/* Song Title */
+#playAllBtn:hover::before {
+    opacity: 1;
+}
+
+/* ================= SONG TITLE ================= */
 #songTitle {
-    margin-bottom: 30px;
-    font-size: 28px;
+    margin-bottom: 40px;
+    font-size: 30px;
     font-weight: bold;
+    letter-spacing: 1px;
 }
 
 /* ================= DISC ================= */
@@ -146,12 +203,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .disc-container {
-    width: 240px;
-    height: 240px;
+    width: 260px;
+    height: 260px;
     position: relative;
 }
 
@@ -160,11 +217,12 @@ body {
     height: 100%;
     border-radius: 50%;
     background: radial-gradient(circle at center, #ff4c60 0%, #8b0000 30%, #000 70%);
+    box-shadow: 0 0 40px rgba(255, 76, 96, 0.6);
 }
 
 .disc .center {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     background: red;
     border-radius: 50%;
     position: absolute;
@@ -177,13 +235,14 @@ body {
 audio {
     width: 70%;
     max-width: 600px;
+    border-radius: 30px;
 }
 
 /* ================= UPDATE LABEL ================= */
 .update-label {
     position: absolute;
     bottom: 15px;
-    right: 20px;
+    right: 25px;
     font-size: 13px;
     opacity: 0.6;
 }
