@@ -5,37 +5,52 @@
     box-sizing: border-box;
 }
 
-/* ================= BODY ================= */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #141e30, #243b55);
     color: white;
     height: 100vh;
+    overflow: hidden;
+}
+
+/* ================= CONTAINER (2 CỘT) ================= */
+.container {
     display: flex;
+    height: 100vh;
 }
 
 /* ================= SIDEBAR ================= */
 .sidebar {
     width: 360px;
-    background: rgba(0,0,0,0.35);
+    background: rgba(0, 0, 0, 0.35);
     padding: 25px 20px;
     overflow-y: auto;
 }
 
-.sidebar h1 {
+/* Profile */
+.profile {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
+    margin-bottom: 35px;
+}
+
+.avatar {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.profile h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
     letter-spacing: 2px;
 }
 
-/* ===== SECTION (YEAR) ===== */
-section {
+/* Year box */
+.year-box {
     margin-bottom: 30px;
 }
 
-section h2 {
-    margin-bottom: 14px;
+.year-box h3 {
+    margin-bottom: 15px;
     font-size: 18px;
     opacity: 0.9;
 }
@@ -45,7 +60,7 @@ section h2 {
     list-style: none;
 }
 
-/* ===== SONG ITEM ===== */
+/* Song item (to hơn, dễ nhìn hơn) */
 .playlist li {
     display: flex;
     justify-content: space-between;
@@ -67,12 +82,11 @@ section h2 {
     background: rgba(255,255,255,0.16);
 }
 
-/* ===== ACTIVE ===== */
 .playlist li.active {
     background: #ff4c60;
 }
 
-/* ===== SONG NAME ===== */
+/* Song name */
 .song-name {
     flex: 1;
     overflow: hidden;
@@ -80,7 +94,7 @@ section h2 {
     text-overflow: ellipsis;
 }
 
-/* ===== DURATION ===== */
+/* Duration */
 .duration {
     min-width: 60px;
     text-align: right;
@@ -88,25 +102,31 @@ section h2 {
     opacity: 0.9;
 }
 
-/* ================= MAIN PLAYER ================= */
-.main {
+/* ================= PLAYER ================= */
+.player {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
-/* ===== PLAY ALL BUTTON ===== */
+/* Play All Button */
 #playAllBtn {
-    padding: 14px 30px;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+
+    padding: 12px 26px;
     border: none;
     border-radius: 30px;
+
     background: linear-gradient(90deg, #ff512f, #dd2476);
     color: white;
-    font-size: 16px;
+
+    font-size: 15px;
     cursor: pointer;
-    margin-bottom: 40px;
     transition: 0.2s ease;
 }
 
@@ -114,29 +134,61 @@ section h2 {
     transform: translateY(-3px);
 }
 
-/* ===== TITLE ===== */
+/* Song Title */
 #songTitle {
-    margin-bottom: 25px;
-    font-size: 26px;
+    margin-bottom: 30px;
+    font-size: 28px;
     font-weight: bold;
 }
 
-/* ===== VINYL IMAGE (NẾU CÓ) ===== */
-.vinyl {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: radial-gradient(circle at center, red 0%, darkred 30%, black 70%);
+/* ================= DISC ================= */
+.visual-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 40px;
 }
 
-/* ===== AUDIO PLAYER ===== */
+.disc-container {
+    width: 240px;
+    height: 240px;
+    position: relative;
+}
+
+.disc {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #ff4c60 0%, #8b0000 30%, #000 70%);
+}
+
+.disc .center {
+    width: 60px;
+    height: 60px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ================= AUDIO ================= */
 audio {
     width: 70%;
     max-width: 600px;
 }
 
-/* ===== ẨN DANH SÁCH GỐC ===== */
+/* ================= UPDATE LABEL ================= */
+.update-label {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+/* ================= HIDE SOURCE LIST ================= */
 .all-songs {
     display: none;
 }
